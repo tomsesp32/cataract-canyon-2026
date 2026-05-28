@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slideshow — Cataract Canyon 2026</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Under Construction state ── */
+    .construction {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .construction-icon {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      animation: bob 2.5s ease-in-out infinite;
+    }
+
+    .construction h2 {
+      color: var(--rust-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .construction p {
+      color: var(--text-light);
+      max-width: 440px;
+      font-size: 1rem;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* ── Slideshow (active when photos.json is present) ── */
+    .slideshow-wrap {
+      display: none; /* shown by JS when photos load successfully */
+      position: relative;
+      width: 100%;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1.25rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+      color: rgba(255,255,255,0.8);
+      font-family: sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .slideshow-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      background: var(--rust-dark);
+    }
+
+    .slideshow-controls button {
+      background: none;
+      border: 2px solid var(--sandstone);
+      color: var(--sandstone);
+      font-size: 1.1rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .slideshow-controls button:hover {
+      background: var(--sandstone);
+      color: var(--rust-dark);
+    }
+
+    .slide-counter {
+      color: var(--sandstone);
+      font-family: sans-serif;
+      font-size: 0.85rem;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .speed-label {
+      color: var(--sandstone);
+      font-family: sans-serif;
+      font-size: 0.8rem;
+    }
+
+    .speed-select {
+      background: var(--rust);
+      color: var(--sandstone);
+      border: 1px solid var(--sandstone);
+      border-radius: 4px;
+      padding: 0.25rem 0.4rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .slideshow-stats {
+      text-align: center;
+      padding: 0.6rem;
+      font-family: sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      background: var(--sand-light);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">Cataract Canyon 2026</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="river.html">The River</a></li>
+        <li><a href="route.html">Route</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="crew.html">The Guides</a></li>
+        <li><a href="fun_stuff.html">Fun Stuff</a></li>
+        <li><a href="slideshow.html">Slideshow</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Under Construction (shown until photos.json exists) -->
+  <div class="construction" id="construction">
+    <div class="construction-icon">🚧</div>
+    <h2>Slideshow Coming Soon</h2>
+    <p>Photos are still coming in from the families. Check back once everyone has uploaded their albums — this page will play through all of them automatically.</p>
+  </div>
+
+  <!-- Slideshow (hidden until photos.json loads) -->
+  <div class="slideshow-wrap" id="slideshowWrap">
+    <div id="slideContainer"></div>
+    <div class="slideshow-controls">
+      <button id="prevBtn" title="Previous">&#8592;</button>
+      <button id="playBtn" title="Pause">&#9646;&#9646;</button>
+      <button id="nextBtn" title="Next">&#8594;</button>
+      <span class="slide-counter" id="counter">— / —</span>
+      <span class="speed-label">Speed:</span>
+      <select class="speed-select" id="speedSelect">
+        <option value="3000">Fast (3s)</option>
+        <option value="5000" selected>Medium (5s)</option>
+        <option value="8000">Slow (8s)</option>
+        <option value="12000">Very slow (12s)</option>
+      </select>
+    </div>
+    <div class="slideshow-stats" id="slideshowStats"></div>
+  </div>
+
+  <footer>
+    <p>Cataract Canyon 2026 &mdash; A private trip site for the families who were there.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Try to load photos.json — if it exists, run the slideshow
+    fetch('photos.json')
+      .then(r => {
+        if (!r.ok) throw new Error('not found');
+        return r.json();
+      })
+      .then(data => {
+        if (!data.photos || data.photos.length === 0) return;
+        startSlideshow(data);
+      })
+      .catch(() => {
+        // photos.json not present — leave Under Construction visible
+      });
+
+    function startSlideshow(data) {
+      document.getElementById('construction').style.display = 'none';
+      document.getElementById('slideshowWrap').style.display = 'block';
+
+      const photos   = data.photos;
+      const container = document.getElementById('slideContainer');
+      const counter   = document.getElementById('counter');
+      const stats     = document.getElementById('slideshowStats');
+      const playBtn   = document.getElementById('playBtn');
+      const speedSel  = document.getElementById('speedSelect');
+
+      let current  = 0;
+      let playing  = true;
+      let interval = null;
+
+      // Build slide elements
+      photos.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'slide' + (i === 0 ? ' active' : '');
+
+        const img = document.createElement('img');
+        img.src = p.url;
+        img.alt = p.caption || '';
+        img.loading = 'lazy';
+        div.appendChild(img);
+
+        if (p.caption) {
+          const cap = document.createElement('div');
+          cap.className = 'slide-caption';
+          cap.textContent = p.caption;
+          div.appendChild(cap);
+        }
+
+        container.appendChild(div);
+      });
+
+      const slides = container.querySelectorAll('.slide');
+
+      function showSlide(n) {
+        slides[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        counter.textContent = `${current + 1} / ${slides.length}`;
+      }
+
+      function startInterval() {
+        clearInterval(interval);
+        interval = setInterval(() => showSlide(current + 1), parseInt(speedSel.value));
+      }
+
+      // Stats bar
+      const families = data.families || [];
+      stats.textContent = `${photos.length} photos from ${families.length || 'all'} families`;
+      counter.textContent = `1 / ${slides.length}`;
+
+      // Controls
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        showSlide(current - 1);
+        if (playing) startInterval();
+      });
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        showSlide(current + 1);
+        if (playing) startInterval();
+      });
+      playBtn.addEventListener('click', () => {
+        playing = !playing;
+        playBtn.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+        playing ? startInterval() : clearInterval(interval);
+      });
+      speedSel.addEventListener('change', () => { if (playing) startInterval(); });
+
+      startInterval();
+    }
+  </script>
+
+</body>
+</html>
