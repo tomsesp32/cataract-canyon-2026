@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emails — Cataract Canyon 2026</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .roster-card {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.09);
+      overflow: hidden;
+    }
+
+    .roster-card-header {
+      background: linear-gradient(135deg, var(--rust-dark) 0%, var(--river-dark) 100%);
+      color: var(--sandstone);
+      font-family: 'Palatino Linotype', Palatino, serif;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 1rem;
+    }
+
+    .roster-entry {
+      display: flex;
+      flex-direction: column;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+
+    .roster-entry:last-child {
+      border-bottom: none;
+    }
+
+    .roster-name {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: normal;
+    }
+
+    .roster-email {
+      font-size: 0.82rem;
+      font-family: monospace;
+      color: var(--river);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .roster-email:hover {
+      color: var(--rust);
+      text-decoration: underline;
+    }
+
+    .copy-all-wrap {
+      margin-top: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.09);
+    }
+
+    .copy-all-wrap h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .copy-all-wrap p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .email-string {
+      font-family: monospace;
+      font-size: 0.78rem;
+      background: var(--sand-light);
+      border: 1px solid var(--sandstone);
+      border-radius: 4px;
+      padding: 0.6rem 0.8rem;
+      word-break: break-all;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .btn-copy {
+      font-family: sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 1.1rem;
+      background: var(--river);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-copy:hover { background: var(--river-dark); }
+    .btn-copy.copied { background: #2a7a4a; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">Cataract Canyon 2026</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="river.html">The River</a></li>
+        <li><a href="route.html">Route</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="crew.html">The Guides</a></li>
+        <li><a href="fun_stuff.html">Fun Stuff</a></li>
+        <li><a href="slideshow.html">Slideshow</a></li>
+        <li><a href="emails.html">Emails</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>Email Roster</h1>
+    <p>Everyone on the trip — click any address to open your email client</p>
+  </header>
+
+  <main class="page-content wide">
+
+    <div class="roster-grid">
+
+      <!-- Guides -->
+      <div class="roster-card">
+        <div class="roster-card-header">The Guides</div>
+        <div class="roster-entry">
+          <span class="roster-name">Tanner Desrosiers</span>
+          <a class="roster-email" href="mailto:tannerdeL9@gmail.com">tannerdeL9@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Devon Gregory</span>
+          <a class="roster-email" href="mailto:Dazzledazzler241@gmail.com">Dazzledazzler241@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Reina Baldwin</span>
+          <a class="roster-email" href="mailto:reina.baldwin@gmail.com">reina.baldwin@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- McMoran -->
+      <div class="roster-card">
+        <div class="roster-card-header">McMoran Family</div>
+        <div class="roster-entry">
+          <span class="roster-name">Susan Moran</span>
+          <a class="roster-email" href="mailto:susankmoran@gmail.com">susankmoran@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Tom McKinnon</span>
+          <a class="roster-email" href="mailto:tom.mckinnon@mac.com">tom.mckinnon@mac.com</a>
+        </div>
+      </div>
+
+      <!-- Redal -->
+      <div class="roster-card">
+        <div class="roster-card-header">Redal Family</div>
+        <div class="roster-entry">
+          <span class="roster-name">Leif Redal</span>
+          <a class="roster-email" href="mailto:leifredal@gmail.com">leifredal@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Wendy Redal</span>
+          <a class="roster-email" href="mailto:wendyr@nathab.com">wendyr@nathab.com</a>
+        </div>
+      </div>
+
+      <!-- Muczynski -->
+      <div class="roster-card">
+        <div class="roster-card-header">Muczynski Family</div>
+        <div class="roster-entry">
+          <span class="roster-name">Theresa Muczynski</span>
+          <a class="roster-email" href="mailto:trabine@hotmail.com">trabine@hotmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">John Muczynski</span>
+          <a class="roster-email" href="mailto:jmuczyn1@gmail.com">jmuczyn1@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Baatzuela -->
+      <div class="roster-card">
+        <div class="roster-card-header">Baatzuela Family</div>
+        <div class="roster-entry">
+          <span class="roster-name">Allie Valenzuela</span>
+          <a class="roster-email" href="mailto:aa.valenzuela@gmail.com">aa.valenzuela@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Andy Baatz</span>
+          <a class="roster-email" href="mailto:baabqnm@gmail.com">baabqnm@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Barron -->
+      <div class="roster-card">
+        <div class="roster-card-header">Barron Family</div>
+        <div class="roster-entry">
+          <span class="roster-name">Kate Barron</span>
+          <a class="roster-email" href="mailto:katebarron31@gmail.com">katebarron31@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Mike Barron</span>
+          <a class="roster-email" href="mailto:mikesbarron@gmail.com">mikesbarron@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Jane Barron</span>
+          <a class="roster-email" href="mailto:dirttownjane@gmail.com">dirttownjane@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Claire Barron</span>
+          <a class="roster-email" href="mailto:dirttownclaire@gmail.com">dirttownclaire@gmail.com</a>
+        </div>
+      </div>
+
+      <!-- Colbert -->
+      <div class="roster-card">
+        <div class="roster-card-header">Colbert Family</div>
+        <div class="roster-entry">
+          <span class="roster-name">Anna Colbert</span>
+          <a class="roster-email" href="mailto:spamcan33333@gmail.com">spamcan33333@gmail.com</a>
+        </div>
+        <div class="roster-entry">
+          <span class="roster-name">Tom Colbert</span>
+          <a class="roster-email" href="mailto:kotaesu@hotmail.com">kotaesu@hotmail.com</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copy-all section -->
+    <div class="copy-all-wrap">
+      <h3>Email Everyone</h3>
+      <p>Paste this into the To: or BCC: field of your email client to reach the whole group at once.</p>
+      <code class="email-string" id="emailString">tannerdeL9@gmail.com, Dazzledazzler241@gmail.com, reina.baldwin@gmail.com, susankmoran@gmail.com, tom.mckinnon@mac.com, leifredal@gmail.com, wendyr@nathab.com, trabine@hotmail.com, jmuczyn1@gmail.com, aa.valenzuela@gmail.com, baabqnm@gmail.com, katebarron31@gmail.com, mikesbarron@gmail.com, dirttownjane@gmail.com, dirttownclaire@gmail.com, spamcan33333@gmail.com, kotaesu@hotmail.com</code>
+      <button class="btn-copy" id="copyBtn" onclick="copyEmails()">Copy all addresses</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Cataract Canyon 2026 &mdash; A private trip site for the families who were there.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function copyEmails() {
+      const text = document.getElementById('emailString').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy all addresses';
+          btn.classList.remove('copied');
+        }, 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>
