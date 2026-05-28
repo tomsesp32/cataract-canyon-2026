@@ -16,8 +16,11 @@ cataract-canyon-2026/
 ├── route.html          ← Google MyMaps embed of the float route
 ├── gallery.html        ← 6-card grid linking to per-family Google Photos albums
 ├── crew.html           ← The Guides: four-quadrant page (Tanner, Cam, Reina, Devon)
-├── fun_stuff.html      ← Fun Stuff landing page: card grid linking to sub-pages
-└── petrified_wood.html ← How petrified wood forms (geochemistry article)
+├── fun_stuff.html          ← Fun Stuff landing page: card grid linking to sub-pages
+├── petrified_wood.html     ← How petrified wood forms (geochemistry article)
+├── ancestral_puebloans.html ← Ancestral Puebloan history
+├── cryptobiotic_soil.html  ← Desert living crust ecosystem
+└── desert_varnish.html     ← Canyon wall coatings (biogeochemistry)
 ├── css/
 │   └── style.css       ← Shared styles — all pages use this
 ├── js/
@@ -69,7 +72,12 @@ Pages should appear in the nav bar in this order:
 `fun_stuff.html` is a card-grid landing page. Each card links to a sub-page article.
 Sub-pages also carry the shared nav and link back to `fun_stuff.html` in their footer.
 Current sub-pages:
-- `petrified_wood.html` — petrified wood geochemistry article (has its own inline styles + Google Fonts; shared nav added on top)
+- `petrified_wood.html` — petrified wood geochemistry article
+- `ancestral_puebloans.html` — history of Ancestral Puebloan peoples of the plateau
+- `cryptobiotic_soil.html` — the living desert crust ecosystem
+- `desert_varnish.html` — biogeochemical mystery of canyon wall coatings
+
+All Fun Stuff sub-pages have their own inline styles + Google Fonts; shared nav and style.css are added on top. Each links back to `fun_stuff.html` in its footer.
 
 ## main.js purpose
 Handles shared nav behavior: mobile hamburger menu toggle. No other logic planned at this time.

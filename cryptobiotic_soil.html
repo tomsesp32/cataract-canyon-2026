@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryptobiotic Soil: The Living Crust Beneath Your Feet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root {
+      --sand:      #e8d5b0;
+      --rust:      #b8460b;
+      --ochre:     #c98a2e;
+      --deep:      #2a1a0e;
+      --stone:     #8c7355;
+      --cream:     #f5ede0;
+      --purple:    #6b4c7a;
+      --charcoal:  #3d2e22;
+      --bio-dark:  #1e2410;
+      --bio-green: #3d5220;
+      --bio-mid:   #6b7a3a;
+      --bio-light: #a8b870;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--deep);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── decorative top band ── */
+    .band {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--bio-dark) 0%, var(--bio-green) 25%, var(--bio-mid) 55%, var(--bio-light) 80%, var(--ochre) 100%);
+    }
+
+    /* ── hero ── */
+    header {
+      position: relative;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 80%, rgba(30,36,16,.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(107,122,58,.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 55%, rgba(201,138,46,.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-family: 'Source Serif 4', serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--bio-green);
+      margin-bottom: .75rem;
+      opacity: 0;
+      animation: fadeUp .6s .1s forwards;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--charcoal);
+      max-width: 720px;
+      margin: 0 auto .6rem;
+      opacity: 0;
+      animation: fadeUp .7s .25s forwards;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--stone);
+      opacity: 0;
+      animation: fadeUp .7s .4s forwards;
+    }
+
+    .ornament {
+      display: block;
+      margin: 1.8rem auto 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--bio-mid), transparent);
+      opacity: 0;
+      animation: fadeUp .6s .55s forwards;
+    }
+
+    /* ── article body ── */
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      opacity: 0;
+      animation: fadeUp .8s .65s forwards;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--bio-green);
+      margin: 2.5rem 0 .7rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--bio-mid);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    strong {
+      font-weight: 400;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--bio-light);
+    }
+
+    em {
+      font-style: italic;
+      color: var(--charcoal);
+    }
+
+    /* ── community succession diagram ── */
+    .succession {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 1.4rem 0 1.8rem;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.1);
+    }
+    .suc-stage {
+      flex: 1;
+      padding: .9rem .7rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: .35rem;
+    }
+    .suc-stage .age {
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .75;
+    }
+    .suc-stage .name {
+      font-family: 'Playfair Display', serif;
+      font-size: .88rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .suc-stage .desc {
+      font-size: .72rem;
+      line-height: 1.35;
+      opacity: .8;
+    }
+    .suc-s1 { background: #c4b89a; color: #3d2e22; }
+    .suc-s2 { background: #6b7a3a; color: #f0edd6; }
+    .suc-s3 { background: #3d5220; color: #d8e8b0; }
+    .suc-s4 { background: #1e2410; color: #a8c878; }
+    .suc-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 2px;
+      background: rgba(255,255,255,.15);
+      color: rgba(255,255,255,.6);
+      font-size: .8rem;
+    }
+
+    /* ── nitrogen fixation callout ── */
+    .n-fix {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 1.4rem 0;
+      padding: 1rem 1.2rem;
+      background: rgba(61,82,32,.07);
+      border-radius: 6px;
+      border: 1px solid rgba(107,122,58,.3);
+    }
+    .n-fix .big-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--bio-green);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .n-fix .n-text {
+      font-size: .92rem;
+      line-height: 1.55;
+      color: var(--charcoal);
+    }
+    .n-fix .n-text strong {
+      border-bottom: none;
+      font-weight: 600;
+      color: var(--bio-green);
+    }
+
+    /* ── bullet list ── */
+    .process-list {
+      list-style: none;
+      margin: 1rem 0 1.4rem;
+      padding: 0;
+    }
+    .process-list li {
+      position: relative;
+      padding: .65rem 1rem .65rem 2.4rem;
+      margin-bottom: .45rem;
+      background: rgba(30,36,16,.05);
+      border-radius: 4px;
+    }
+    .process-list li::before {
+      content: '◆';
+      position: absolute;
+      left: .8rem;
+      top: .72rem;
+      color: var(--bio-mid);
+      font-size: .62rem;
+    }
+    .process-list li strong {
+      border-bottom: none;
+      color: var(--bio-green);
+      font-weight: 600;
+    }
+
+    /* ── recovery timeline bar ── */
+    .recovery-wrap {
+      margin: 1.2rem 0 1.6rem;
+    }
+    .recovery-label {
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: .5rem;
+    }
+    .recovery-bar {
+      position: relative;
+      height: 36px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+      background: #e8d5b0;
+    }
+    .rb-seg {
+      position: absolute;
+      top: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      letter-spacing: .03em;
+    }
+    .rb-s1 { left: 0;   width: 8%;  background: #8c7355; }
+    .rb-s2 { left: 8%;  width: 18%; background: #6b7a3a; }
+    .rb-s3 { left: 26%; width: 74%; background: #1e2410; }
+    .recovery-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem 1.2rem;
+      font-size: .8rem;
+      color: var(--stone);
+      margin-top: .5rem;
+    }
+    .recovery-legend span { display: flex; align-items: center; gap: .4rem; }
+    .swatch {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── warning card ── */
+    .warn-card {
+      margin: 2rem 0;
+      padding: 1.1rem 1.4rem;
+      border-left: 4px solid var(--rust);
+      background: rgba(184,70,11,.06);
+      border-radius: 0 6px 6px 0;
+    }
+    .warn-card .card-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--rust);
+      margin-bottom: .45rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .warn-card .card-head::before { content: '⚠'; font-size: .9rem; }
+    .warn-card p { margin: 0; font-size: .95rem; }
+
+    /* ── pull-quote ── */
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.6rem;
+      border-left: 4px solid var(--purple);
+      background: rgba(107,76,122,.06);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--stone);
+      border-top: 1px solid rgba(140,115,85,.25);
+    }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 1.5rem 1.2rem 3rem; }
+      .succession { flex-direction: column; }
+      .suc-arrow { display: none; }
+      .n-fix { flex-direction: column; gap: .6rem; }
+      .rb-seg { font-size: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Site Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Cataract Canyon 2026</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="river.html">The River</a></li>
+      <li><a href="route.html">Route</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="crew.html">The Guides</a></li>
+      <li><a href="fun_stuff.html">Fun Stuff</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="band"></div>
+
+<header>
+  <p class="kicker">Ecology of the Colorado Plateau</p>
+  <h1>Cryptobiotic Soil</h1>
+  <p class="subtitle">The living crust beneath your feet — and why it matters</p>
+  <span class="ornament"></span>
+</header>
+
+<article>
+
+  <p>If you've hiked in canyon country and noticed dark, lumpy, almost brain-textured patches on the soil between plants — patches that look almost alive — you were almost certainly looking at <strong>cryptobiotic soil crust</strong>, one of the most ecologically important and least appreciated communities in the desert Southwest. It is, in fact, very much alive.</p>
+
+  <h2>What It Is</h2>
+
+  <p>Cryptobiotic crust (also called <strong>biological soil crust</strong>, <strong>biocrust</strong>, or <strong>cryptogamic crust</strong>) is a tight-knit community of living organisms — <strong>cyanobacteria, green algae, microfungi, mosses, liverworts, and lichens</strong> — that colonize and bind the top few millimeters of desert soil into a coherent, structured layer. The word <em>cryptobiotic</em> means roughly "hidden life," a nod to how invisible the community's complexity is at first glance.</p>
+
+  <p>The community is successional: it develops through recognizable stages over centuries, growing progressively more complex, darker, and more three-dimensional as it matures.</p>
+
+  <div class="succession">
+    <div class="suc-stage suc-s1">
+      <span class="age">Bare soil</span>
+      <span class="name">Disturbed</span>
+      <span class="desc">No crust; loose, erodible surface</span>
+    </div>
+    <div class="suc-arrow">›</div>
+    <div class="suc-stage suc-s2">
+      <span class="age">5–10 yrs</span>
+      <span class="name">Early Cyanobacteria</span>
+      <span class="desc">Thin dark film; smooth surface</span>
+    </div>
+    <div class="suc-arrow">›</div>
+    <div class="suc-stage suc-s3">
+      <span class="age">Decades</span>
+      <span class="name">Algae &amp; Fungi</span>
+      <span class="desc">Slight rugosity; better N fixation</span>
+    </div>
+    <div class="suc-arrow">›</div>
+    <div class="suc-stage suc-s4">
+      <span class="age">50–250 yrs</span>
+      <span class="name">Mature Lichen–Moss</span>
+      <span class="desc">Dark pinnacles; full function</span>
+    </div>
+  </div>
+
+  <h2>The Founding Organism: Cyanobacteria</h2>
+
+  <p>The ecological and biochemical foundation of cryptobiotic crust is the filamentous cyanobacterium <em>Microcoleus vaginatus</em> and related species. These organisms are extraordinary survivors: they can withstand complete desiccation, extreme UV exposure, and temperature swings from freezing to 70°C, entering a dormant state during dry periods and resuming metabolic activity within minutes of wetting.</p>
+
+  <p>As <em>Microcoleus</em> filaments grow and migrate through soil, they secrete <strong>sticky polysaccharide sheaths</strong> — long, mucilaginous tubes that physically ensheath soil particles and bind them together. When the organism dies, these sheaths persist in the soil for years, leaving behind a three-dimensional polymer matrix that gives the crust its structural integrity. Over time, this matrix accumulates, cements, and becomes the scaffold on which the rest of the community builds.</p>
+
+  <h2>Nitrogen Fixation: The Chemical Gift</h2>
+
+  <p>Beyond physical stabilization, cyanobacteria and certain crust lichens perform <strong>biological nitrogen fixation</strong> — converting atmospheric N₂ into bioavailable ammonium (NH₄⁺) via the enzyme <strong>nitrogenase</strong>. In nitrogen-poor desert soils, this is not a minor contribution.</p>
+
+  <div class="n-fix">
+    <div class="big-n">9–13</div>
+    <div class="n-text">
+      <strong>kg of nitrogen fixed per hectare per year</strong> — the measured contribution of intact biological soil crusts on the Colorado Plateau. In an ecosystem where combined nitrogen is often the primary limiting nutrient for plant growth, this biological subsidy is the difference between a functioning plant community and bare ground.
+    </div>
+  </div>
+
+  <p>Remove the crust, and you effectively cut off the soil's nitrogen income — with cascading consequences for every plant and animal in the system.</p>
+
+  <h2>Hydrological and Erosion Functions</h2>
+
+  <p>Intact crust dramatically affects how water moves through desert landscapes. A mature crust surface is <strong>hydrophilic and structurally rough</strong>, slowing runoff and promoting infiltration of rainfall into the soil profile. It also physically armor-plates the surface against <strong>wind and water erosion</strong> — the two dominant erosion forces in arid landscapes. Studies consistently show that damaged crust leads to sharply higher sediment loss and reduced water retention.</p>
+
+  <ul class="process-list">
+    <li><strong>Wind erosion resistance:</strong> The bound surface resists saltation — the bouncing, dislodging movement of wind-driven particles that strips bare soil.</li>
+    <li><strong>Water infiltration:</strong> Rough pinnacle surfaces slow sheet flow, giving water time to percolate rather than run off.</li>
+    <li><strong>Seed and nutrient capture:</strong> The raised, irregular surface catches windblown seeds and fine organic debris, concentrating nutrients where plants can access them.</li>
+    <li><strong>Soil stability:</strong> Polysaccharide sheaths glue aggregates together, resisting the particle-by-particle breakdown that causes dust storms.</li>
+  </ul>
+
+  <h2>Extreme Vulnerability</h2>
+
+  <p>The same thin, surface-bound structure that makes crust so effective makes it catastrophically vulnerable to <strong>physical disturbance</strong>. A single footstep crushes the three-dimensional architecture, severing the polysaccharide matrix and killing the photosynthetic organisms. Tire tracks and livestock trampling can strip crust from vast areas in a single pass.</p>
+
+  <p>Recovery is agonizingly slow:</p>
+
+  <div class="recovery-wrap">
+    <p class="recovery-label">Approximate recovery timeline after disturbance</p>
+    <div class="recovery-bar">
+      <div class="rb-seg rb-s1">5–10y</div>
+      <div class="rb-seg rb-s2">10–30y</div>
+      <div class="rb-seg rb-s3">50–250 years to full recovery</div>
+    </div>
+    <div class="recovery-legend">
+      <span><span class="swatch" style="background:#8c7355;"></span>Basic cyanobacterial film (5–10 yrs)</span>
+      <span><span class="swatch" style="background:#6b7a3a;"></span>Algae &amp; fungi established (10–30 yrs)</span>
+      <span><span class="swatch" style="background:#1e2410;"></span>Full lichen–moss community (50–250+ yrs)</span>
+    </div>
+  </div>
+
+  <div class="warn-card">
+    <div class="card-head">Don't Bust the Crust</div>
+    <p>A footprint off-trail may still be biologically visible a century later. The phrase on trailhead signs throughout canyon country isn't hyperbole — it's a precise description of the recovery timescale. Climate warming and altered precipitation are expected to slow recovery further in coming decades.</p>
+  </div>
+
+  <h2>A System Under Pressure</h2>
+
+  <p>Across the Colorado Plateau and Great Basin, large-scale livestock grazing, off-road vehicle use, and the spread of invasive annual grasses — especially <em>Bromus tectorum</em> (cheatgrass) — have collectively degraded biocrust cover across enormous areas. The consequences are not isolated: loss of crust initiates a self-reinforcing feedback loop.</p>
+
+  <ul class="process-list">
+    <li><strong>Crust loss</strong> → reduced nitrogen fixation → weakened native perennial plant communities</li>
+    <li><strong>Bare soil</strong> → cheatgrass colonization → altered fire regime</li>
+    <li><strong>Increased fire frequency</strong> → further crust destruction → accelerating degradation</li>
+  </ul>
+
+  <blockquote>
+    What looks like bare dirt between desert shrubs is rarely inert — it is, or once was, a living infrastructure quietly maintaining the entire system above it.
+  </blockquote>
+
+</article>
+
+<footer>
+  Ecology &amp; Natural History · Colorado Plateau &mdash;
+  <a href="fun_stuff.html" style="color:var(--stone);">← Back to Fun Stuff</a>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

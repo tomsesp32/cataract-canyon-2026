@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desert Varnish: A Biogeochemical Mystery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root {
+      --sand:     #e8d5b0;
+      --rust:     #b8460b;
+      --ochre:    #c98a2e;
+      --deep:     #2a1a0e;
+      --stone:    #8c7355;
+      --cream:    #f5ede0;
+      --purple:   #6b4c7a;
+      --charcoal: #3d2e22;
+      --varnish:  #1a1208;
+      --dark-mn:  #2c1f0e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--deep);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── decorative top band ── */
+    .band {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--varnish) 0%, var(--dark-mn) 20%, var(--stone) 50%, var(--ochre) 75%, var(--rust) 100%);
+    }
+
+    /* ── hero ── */
+    header {
+      position: relative;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 85%, rgba(44,31,14,.13) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(201,138,46,.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(107,76,122,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-family: 'Source Serif 4', serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: .75rem;
+      opacity: 0;
+      animation: fadeUp .6s .1s forwards;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--charcoal);
+      max-width: 720px;
+      margin: 0 auto .6rem;
+      opacity: 0;
+      animation: fadeUp .7s .25s forwards;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--stone);
+      opacity: 0;
+      animation: fadeUp .7s .4s forwards;
+    }
+
+    .ornament {
+      display: block;
+      margin: 1.8rem auto 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--ochre), transparent);
+      opacity: 0;
+      animation: fadeUp .6s .55s forwards;
+    }
+
+    /* ── article body ── */
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      opacity: 0;
+      animation: fadeUp .8s .65s forwards;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--rust);
+      margin: 2.5rem 0 .7rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--ochre);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    strong {
+      font-weight: 400;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--ochre);
+    }
+
+    em {
+      font-style: italic;
+      color: var(--charcoal);
+    }
+
+    /* ── process steps ── */
+    .process-steps {
+      list-style: none;
+      margin: 1rem 0 1.4rem;
+      padding: 0;
+      counter-reset: steps;
+    }
+    .process-steps li {
+      position: relative;
+      padding: .75rem 1rem .75rem 3rem;
+      margin-bottom: .5rem;
+      background: rgba(44,31,14,.05);
+      border-radius: 4px;
+      counter-increment: steps;
+    }
+    .process-steps li::before {
+      content: counter(steps);
+      position: absolute;
+      left: .9rem;
+      top: .7rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      background: var(--ochre);
+      color: var(--cream);
+      font-size: .72rem;
+      font-weight: 600;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Source Serif 4', serif;
+    }
+    .process-steps li strong {
+      border-bottom: none;
+      color: var(--rust);
+      font-weight: 600;
+    }
+
+    /* ── varnish composition bar ── */
+    .comp-bar-wrap {
+      margin: 1.2rem 0 .5rem;
+    }
+    .comp-bar-label {
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: .4rem;
+    }
+    .comp-bar {
+      display: flex;
+      height: 32px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    .comp-bar .seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.85);
+      letter-spacing: .04em;
+      transition: flex .4s ease;
+    }
+    .comp-bar .seg-clay  { flex: 70; background: #8c7355; }
+    .comp-bar .seg-mn    { flex: 20; background: #2c1f0e; }
+    .comp-bar .seg-fe    { flex: 10; background: #b8460b; }
+
+    .comp-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem 1.2rem;
+      font-size: .8rem;
+      color: var(--stone);
+      margin-top: .5rem;
+      margin-bottom: 1.4rem;
+    }
+    .comp-legend span { display: flex; align-items: center; gap: .4rem; }
+    .swatch {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── info card: dating note ── */
+    .info-card {
+      margin: 2rem 0;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid rgba(140,115,85,.35);
+      border-radius: 6px;
+      background: rgba(201,138,46,.06);
+      font-size: .95rem;
+    }
+    .info-card .card-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .info-card .card-head::before {
+      content: '◈';
+      color: var(--ochre);
+    }
+
+    /* ── pull-quote ── */
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.6rem;
+      border-left: 4px solid var(--purple);
+      background: rgba(107,76,122,.06);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--stone);
+      border-top: 1px solid rgba(140,115,85,.25);
+    }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 1.5rem 1.2rem 3rem; }
+      .comp-bar .seg { font-size: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Site Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Cataract Canyon 2026</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="river.html">The River</a></li>
+      <li><a href="route.html">Route</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="crew.html">The Guides</a></li>
+      <li><a href="fun_stuff.html">Fun Stuff</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="band"></div>
+
+<header>
+  <p class="kicker">Geology of the Colorado Plateau</p>
+  <h1>Desert Varnish</h1>
+  <p class="subtitle">A biogeochemical mystery written on bare rock</p>
+  <span class="ornament"></span>
+</header>
+
+<article>
+
+  <p>The dark, glossy coating found on exposed rock surfaces throughout the desert Southwest — known as <strong>desert varnish</strong> or <strong>rock varnish</strong> — is one of the more intriguing and still not fully resolved puzzles in geochemistry. Unlike petrified wood, where the chemistry is well understood, desert varnish sits at the intersection of geology, microbiology, and atmospheric chemistry, and researchers still debate the relative contributions of each.</p>
+
+  <h2>What It Is</h2>
+
+  <p>Desert varnish is an extraordinarily thin coating — typically just 10 to 200 micrometers thick — composed primarily of <strong>clay minerals</strong>, <strong>manganese oxides</strong>, and <strong>iron oxides</strong>, along with a variety of trace elements. The manganese content is what gives varnish its characteristic dark brown to jet-black color; iron-dominated varnish tends toward orange-red. The coating is not derived from the rock beneath it — the host rock is essentially irrelevant. Varnish forms on granite, sandstone, basalt, quartzite, almost anything — which is one of the key clues pointing to an external, atmospheric source for the raw materials.</p>
+
+  <div class="comp-bar-wrap">
+    <p class="comp-bar-label">Typical varnish composition</p>
+    <div class="comp-bar">
+      <div class="seg seg-clay">Clay ~70%</div>
+      <div class="seg seg-mn">Mn ~20%</div>
+      <div class="seg seg-fe">Fe ~10%</div>
+    </div>
+  </div>
+  <div class="comp-legend">
+    <span><span class="swatch" style="background:#8c7355;"></span>Clay minerals (~70%)</span>
+    <span><span class="swatch" style="background:#2c1f0e;"></span>Manganese oxides (~20%)</span>
+    <span><span class="swatch" style="background:#b8460b;"></span>Iron oxides (~10%)</span>
+  </div>
+
+  <h2>The Raw Material Problem</h2>
+
+  <p>The central geochemical puzzle is this: manganese is present in desert rocks at concentrations of perhaps 0.1%, yet varnish can contain 50 times that concentration or more. Something is actively <strong>concentrating manganese</strong> from somewhere. The source appears to be <strong>windblown dust</strong> — fine particles from the atmosphere that settle on rock surfaces and carry trace quantities of manganese and iron. Desert environments are rich in aeolian (wind-transported) material, and over millennia, even tiny inputs accumulate.</p>
+
+  <p>But dust deposition alone doesn't explain the concentration. That requires a mechanism.</p>
+
+  <h2>The Biological Hypothesis — Now the Dominant View</h2>
+
+  <p>Beginning in the 1980s, researchers built a compelling case that <strong>manganese-oxidizing microorganisms</strong> — primarily bacteria and fungi living on rock surfaces — are the primary agents of varnish formation. The rock surface harbors a sparse but persistent community of <strong>chemolithotrophic bacteria</strong> (notably Mn-oxidizing species related to <em>Pedomicrobium</em> and <em>Metallogenium</em>) that catalyze the oxidation of dissolved Mn²⁺ to insoluble Mn⁴⁺ oxides — primarily <strong>birnessite</strong>, a layered manganese oxide mineral. This oxidation step is thermodynamically favorable but kinetically slow without biological catalysis; the organisms effectively lower the activation energy of a reaction that would otherwise take far longer abiotically.</p>
+
+  <p>The process unfolds in a repeating episodic cycle:</p>
+
+  <ol class="process-steps">
+    <li><strong>Windblown dust</strong> deposits Mn and Fe on a wet rock surface — from dew, rain, or fog.</li>
+    <li><strong>Thin water films</strong> dissolve trace Mn²⁺ from the deposited dust particles.</li>
+    <li><strong>Mn-oxidizing bacteria</strong> on the surface catalyze oxidation of Mn²⁺ to Mn⁴⁺.</li>
+    <li><strong>Birnessite and other Mn oxides</strong> precipitate out and adsorb additional trace metals from solution.</li>
+    <li><strong>Clay minerals</strong> from the dust are trapped within the growing Mn/Fe oxide matrix.</li>
+    <li>The coating slowly <strong>lithifies</strong> into the hard, lustrous layer visible on canyon walls and boulders.</li>
+  </ol>
+
+  <p>This cycle repeats episodically — varnish grows only when moisture is present, which in the Sonoran or Mojave may mean only a few dozen hours per year. Growth rates are consequently glacial: a varnish layer 100 micrometers thick may represent <strong>thousands to tens of thousands of years</strong> of accumulation.</p>
+
+  <div class="info-card">
+    <div class="card-head">Archaeological Dating Tool</div>
+    <p style="margin:0; font-size:.95rem;">Because varnish accumulates so slowly and predictably, it serves as a relative dating tool in archaeology. Petroglyphs cut through existing varnish expose fresh rock that then slowly re-varnishes — the contrast between re-varnished and unvarnished surfaces gives researchers a rough gauge of age. Ancient images carved thousands of years ago are often nearly as dark as the surrounding uncarved rock.</p>
+  </div>
+
+  <h2>Abiotic Contributions</h2>
+
+  <p>The purely biological story is probably incomplete. Some researchers argue that <strong>inorganic oxidation</strong> also plays a role — Mn²⁺ can oxidize abiotically at mineral surfaces, particularly in the presence of existing Mn oxides, which act as catalysts. UV radiation in high-desert environments may also drive photochemical oxidation reactions in thin surface water films. The current consensus is a <strong>hybrid model</strong>: biology dominates but abiotic surface chemistry contributes, and the relative balance may vary by environment, climate, and rock type.</p>
+
+  <h2>Why It Endures</h2>
+
+  <p>Varnish is remarkably stable once formed. Its hardness — it can be harder than the underlying rock — its impermeability, and the dry desert climate all protect it from weathering. Ancient varnish layers sometimes contain a <strong>stratigraphic record</strong>: subtly different chemical compositions at different depths corresponding to past climate shifts. This makes desert varnish not just a geological curiosity but a potential <strong>paleoclimate archive</strong> locked onto bare rock surfaces across the Southwest, recording tens of thousands of years of environmental history in a coating thinner than a human hair.</p>
+
+  <blockquote>
+    A community of microbes, a breath of windblown dust, a few hours of desert dew — repeated across millennia — and bare rock slowly acquires a skin as dark and lustrous as obsidian.
+  </blockquote>
+
+</article>
+
+<footer>
+  Geology &amp; Natural History · Colorado Plateau &mdash;
+  <a href="fun_stuff.html" style="color:var(--stone);">← Back to Fun Stuff</a>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
