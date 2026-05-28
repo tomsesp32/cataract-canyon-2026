@@ -76,6 +76,7 @@ Current sub-pages:
 - `ancestral_puebloans.html` — history of Ancestral Puebloan peoples of the plateau
 - `cryptobiotic_soil.html` — the living desert crust ecosystem
 - `desert_varnish.html` — biogeochemical mystery of canyon wall coatings
+- `our_planes.html` — the aircraft used for the trip (converted from Our_Planes.docx; images in images/)
 
 All Fun Stuff sub-pages have their own inline styles + Google Fonts; shared nav and style.css are added on top. Each links back to `fun_stuff.html` in its footer.
 

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Planes — Cataract Canyon 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root {
+      --sand:     #e8d5b0;
+      --rust:     #b8460b;
+      --ochre:    #c98a2e;
+      --deep:     #2a1a0e;
+      --stone:    #8c7355;
+      --cream:    #f5ede0;
+      --sky:      #3a6a8c;
+      --horizon:  #5a8aaa;
+      --charcoal: #3d2e22;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--deep);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── decorative top band ── */
+    .band {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--sky) 0%, var(--horizon) 40%, var(--ochre) 70%, var(--rust) 100%);
+    }
+
+    /* ── hero ── */
+    header {
+      position: relative;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(58,106,140,.10) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(184,70,11,.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(201,138,46,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-family: 'Source Serif 4', serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: .75rem;
+      opacity: 0;
+      animation: fadeUp .6s .1s forwards;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--charcoal);
+      max-width: 720px;
+      margin: 0 auto .6rem;
+      opacity: 0;
+      animation: fadeUp .7s .25s forwards;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--stone);
+      opacity: 0;
+      animation: fadeUp .7s .4s forwards;
+    }
+
+    .ornament {
+      display: block;
+      margin: 1.8rem auto 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--sky), transparent);
+      opacity: 0;
+      animation: fadeUp .6s .55s forwards;
+    }
+
+    /* ── article body ── */
+    article {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      opacity: 0;
+      animation: fadeUp .8s .65s forwards;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--sky);
+      margin: 2.5rem 0 .7rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--ochre);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    strong {
+      font-weight: 400;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--ochre);
+    }
+
+    /* ── plane images ── */
+    .plane-card {
+      margin: 1.5rem 0 2.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+      background: #1a2a3a;
+    }
+
+    .plane-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .plane-label {
+      font-family: 'Source Serif 4', serif;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      background: #1a2a3a;
+      padding: .55rem 1rem;
+      text-align: center;
+    }
+
+    /* ── spec table ── */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: .92rem;
+    }
+
+    .spec-table th {
+      text-align: left;
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--sky);
+      border-bottom: 2px solid var(--ochre);
+      padding: .4rem .6rem .4rem 0;
+    }
+
+    .spec-table td {
+      padding: .45rem .6rem .45rem 0;
+      border-bottom: 1px solid rgba(140,115,85,.2);
+      vertical-align: top;
+    }
+
+    .spec-table td:first-child {
+      color: var(--stone);
+      font-size: .88rem;
+      white-space: nowrap;
+      padding-right: 1.5rem;
+      width: 38%;
+    }
+
+    /* ── blockquote ── */
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.6rem;
+      border-left: 4px solid var(--sky);
+      background: rgba(58,106,140,.06);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--stone);
+      border-top: 1px solid rgba(140,115,85,.25);
+    }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 1.5rem 1.2rem 3rem; }
+      .spec-table td:first-child { width: auto; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Site Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Cataract Canyon 2026</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="river.html">The River</a></li>
+      <li><a href="route.html">Route</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="crew.html">The Guides</a></li>
+      <li><a href="fun_stuff.html">Fun Stuff</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="band"></div>
+
+<header>
+  <p class="kicker">Aviation · Cataract Canyon 2026</p>
+  <h1>Our Planes</h1>
+  <p class="subtitle">The aircraft that got us to and from the canyon — a wannabe pilot investigates</p>
+  <span class="ornament"></span>
+</header>
+
+<article>
+
+  <p>I'm a wannabe pilot so I wanted to know all about the planes we flew. (I'm sure I'm the only one…)</p>
+
+  <h2>The Little One</h2>
+
+  <div class="plane-card">
+    <img src="images/plane_small.png" alt="The smaller aircraft used for the trip" />
+    <div class="plane-label">Inbound / outbound shuttle aircraft</div>
+  </div>
+
+  <h2>The Big One</h2>
+
+  <div class="plane-card">
+    <img src="images/plane_big.png" alt="The larger aircraft used for the trip" />
+    <div class="plane-label">Main carrier</div>
+  </div>
+
+</article>
+
+<footer>
+  Aviation &amp; Transport · Cataract Canyon 2026 &mdash;
+  <a href="fun_stuff.html" style="color:var(--stone);">← Back to Fun Stuff</a>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
