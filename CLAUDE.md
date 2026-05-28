@@ -14,9 +14,8 @@ cataract-canyon-2026/
 ├── index.html          ← Landing page with hero image and nav
 ├── river.html          ← Natural history: geology, wildlife, Powell expeditions, rapids
 ├── route.html          ← Google MyMaps embed of the float route
-├── triplog.html        ← Day-by-day journal
 ├── gallery.html        ← 6-card grid linking to per-family Google Photos albums
-├── crew.html           ← Group members
+├── crew.html           ← The Guides: four-quadrant page (Tanner, Cam, Reina, Devon)
 ├── css/
 │   └── style.css       ← Shared styles — all pages use this
 ├── js/
@@ -29,7 +28,7 @@ cataract-canyon-2026/
 ## Style conventions
 - All pages share `css/style.css` — never inline styles
 - Color scheme: canyon/river tones (deep rust, sandstone, river blue)
-- Navigation bar appears on every page linking to all six pages
+- Navigation bar appears on every page linking to all five pages
 - Mobile-friendly layout
 
 ## Google Photos — one album per family
@@ -49,11 +48,8 @@ Photos are hosted in Google Photos, not in this repo. The gallery page links out
 
 ## Page details
 
-### crew.html
-Lists all trip participants by family group — names and a short bio or fun fact per person. Placeholder text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-
-### triplog.html
-Day-by-day journal written by trip participants. Content will be pasted in after the trip. Placeholder text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+### crew.html — "The Guides"
+Four-quadrant full-bleed page. Each quadrant has a circular photo, guide name, and short bio paragraph. Guides: Tanner, Cam, Reina, Devon. Replace emoji avatars with real photos and bios after the trip. Layout uses `.guides-grid` CSS class (2×2 grid, stacks to single column on mobile).
 
 ### hero image
 Use a free stock canyon/river photo as a placeholder. Suggested source: https://unsplash.com/photos/aerial-view-of-river-between-brown-rocky-mountains-during-daytime (Unsplash, free to use). Replace with an actual trip photo after May 2026.
@@ -63,9 +59,8 @@ Pages should appear in the nav bar in this order:
 1. Home (`index.html`)
 2. The River (`river.html`)
 3. Route (`route.html`)
-4. Trip Log (`triplog.html`)
-5. Gallery (`gallery.html`)
-6. Crew (`crew.html`)
+4. Gallery (`gallery.html`)
+5. The Guides (`crew.html`)
 
 ## main.js purpose
 Handles shared nav behavior: mobile hamburger menu toggle. No other logic planned at this time.
