@@ -1,0 +1,471 @@
+/* ============================================================
+   Cataract Canyon 2026 — Shared Stylesheet
+   Color palette: deep rust, sandstone, river blue, dark slate
+   ============================================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --rust:       #8B3A2A;
+  --rust-dark:  #5E2418;
+  --sandstone:  #C9A97A;
+  --sand-light: #F2E8D5;
+  --river:      #2B6C8E;
+  --river-dark: #1A4A63;
+  --river-light:#5BA3C2;
+  --slate:      #2C2C2C;
+  --white:      #FFFFFF;
+  --text:       #3A3028;
+  --text-light: #7A6A58;
+  --nav-height: 60px;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: var(--sand-light);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--river);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--rust);
+  text-decoration: underline;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  font-family: 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  color: var(--rust-dark);
+  line-height: 1.25;
+}
+
+h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.8rem; margin-bottom: 0.75rem; margin-top: 2rem; }
+h3 { font-size: 1.3rem; margin-bottom: 0.5rem; margin-top: 1.5rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* ---------- Navigation ---------- */
+nav {
+  background-color: var(--rust-dark);
+  height: var(--nav-height);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  color: var(--sandstone);
+  font-family: 'Palatino Linotype', Palatino, serif;
+  font-size: 1.15rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-brand:hover {
+  color: var(--sand-light);
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 0.2rem;
+}
+
+.nav-links li a {
+  color: var(--sand-light);
+  font-family: sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.65rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  background-color: var(--rust);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Hamburger button (mobile) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background-color: var(--sand-light);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* Hamburger → X animation */
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 340px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 2rem 2rem 2.5rem;
+  background: linear-gradient(to top, rgba(30,15,5,0.80) 0%, transparent 100%);
+}
+
+.hero-overlay h1 {
+  color: var(--white);
+  font-size: 3rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  margin-bottom: 0.25rem;
+}
+
+.hero-overlay p {
+  color: var(--sandstone);
+  font-size: 1.2rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  margin: 0;
+}
+
+/* ---------- Main content wrapper ---------- */
+.page-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.page-content.wide {
+  max-width: 1100px;
+}
+
+/* ---------- Section divider ---------- */
+.divider {
+  border: none;
+  border-top: 2px solid var(--sandstone);
+  margin: 2rem 0;
+  opacity: 0.5;
+}
+
+/* ---------- Cards (gallery, crew) ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background-color: var(--river-dark);
+}
+
+.card-img-placeholder {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, var(--river-dark) 0%, var(--rust) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.card-body {
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+.card-body h3 {
+  margin-top: 0;
+  color: var(--rust-dark);
+}
+
+.card-body p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.btn-river {
+  background-color: var(--river);
+  color: var(--white);
+}
+
+.btn-river:hover {
+  background-color: var(--river-dark);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* ---------- Trip Log ---------- */
+.log-entry {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--sandstone);
+  opacity: 0.5;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-day {
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--river);
+  margin-bottom: 0.25rem;
+}
+
+.log-entry h2 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+}
+
+.placeholder-badge {
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  background: var(--sandstone);
+  color: var(--rust-dark);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.6rem;
+  opacity: 0.7;
+}
+
+/* ---------- Map embed ---------- */
+.map-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  margin: 1.5rem 0;
+}
+
+.map-wrap iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* ---------- Crew page ---------- */
+.crew-family {
+  margin-bottom: 2.5rem;
+}
+
+.crew-family h2 {
+  border-left: 4px solid var(--rust);
+  padding-left: 0.75rem;
+}
+
+.crew-member {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--white);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.crew-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--river) 0%, var(--rust) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.crew-info h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+}
+
+.crew-info p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* ---------- Page header (non-hero pages) ---------- */
+.page-header {
+  background: linear-gradient(135deg, var(--rust-dark) 0%, var(--river-dark) 100%);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  color: var(--white);
+  font-size: 2.6rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.page-header p {
+  color: var(--sandstone);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: var(--rust-dark);
+  color: var(--sandstone);
+  text-align: center;
+  padding: 1.25rem 1rem;
+  font-family: sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- Utility ---------- */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background-color: var(--rust-dark);
+    flex-direction: column;
+    padding: 0.5rem 0 1rem;
+    gap: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 0.65rem 1.5rem;
+    border-radius: 0;
+    font-size: 1rem;
+  }
+
+  .hero-overlay h1 {
+    font-size: 2rem;
+  }
+
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.5rem; }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crew-member {
+    flex-direction: column;
+  }
+}
