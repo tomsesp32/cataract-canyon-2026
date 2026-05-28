@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Wood Becomes Stone: Petrified Wood Formation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    :root {
+      --sand:     #e8d5b0;
+      --rust:     #b8460b;
+      --ochre:    #c98a2e;
+      --deep:     #2a1a0e;
+      --stone:    #8c7355;
+      --cream:    #f5ede0;
+      --purple:   #6b4c7a;
+      --charcoal: #3d2e22;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--deep);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── decorative top band ── */
+    .band {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--rust) 0%, var(--ochre) 30%, var(--purple) 60%, var(--stone) 100%);
+    }
+
+    /* ── hero ── */
+    header {
+      position: relative;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(184,70,11,.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(107,76,122,.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(201,138,46,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-family: 'Source Serif 4', serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: .75rem;
+      opacity: 0;
+      animation: fadeUp .6s .1s forwards;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--charcoal);
+      max-width: 720px;
+      margin: 0 auto .6rem;
+      opacity: 0;
+      animation: fadeUp .7s .25s forwards;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--stone);
+      opacity: 0;
+      animation: fadeUp .7s .4s forwards;
+    }
+
+    /* ── ornament ── */
+    .ornament {
+      display: block;
+      margin: 1.8rem auto 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--ochre), transparent);
+      opacity: 0;
+      animation: fadeUp .6s .55s forwards;
+    }
+
+    /* ── article body ── */
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      opacity: 0;
+      animation: fadeUp .8s .65s forwards;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--rust);
+      margin: 2.5rem 0 .7rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--ochre);
+    }
+
+    p { margin-bottom: 1.2rem; }
+
+    strong {
+      font-weight: 400;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--ochre);
+    }
+
+    /* ── process list ── */
+    .process-list {
+      list-style: none;
+      margin: 1rem 0 1.4rem;
+      padding: 0;
+    }
+    .process-list li {
+      position: relative;
+      padding: .7rem 1rem .7rem 2.4rem;
+      margin-bottom: .5rem;
+      background: rgba(184,70,11,.05);
+      border-radius: 4px;
+    }
+    .process-list li::before {
+      content: '◆';
+      position: absolute;
+      left: .8rem;
+      top: .75rem;
+      color: var(--ochre);
+      font-size: .65rem;
+    }
+    .process-list li strong {
+      border-bottom: none;
+      color: var(--rust);
+      font-weight: 600;
+    }
+
+    /* ── color swatch bar ── */
+    .color-bar {
+      display: flex;
+      height: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 1rem 0 .5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    .color-bar span { flex: 1; }
+
+    .color-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem .9rem;
+      font-size: .8rem;
+      color: var(--stone);
+      margin-bottom: 1.4rem;
+    }
+    .color-legend span::before {
+      content: '● ';
+    }
+
+    /* ── pull-quote ── */
+    blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.6rem;
+      border-left: 4px solid var(--purple);
+      background: rgba(107,76,122,.06);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      color: var(--stone);
+      border-top: 1px solid rgba(140,115,85,.25);
+    }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      article { padding: 1.5rem 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Site Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Cataract Canyon 2026</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="river.html">The River</a></li>
+      <li><a href="route.html">Route</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="crew.html">The Guides</a></li>
+      <li><a href="fun_stuff.html">Fun Stuff</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="band"></div>
+
+<header>
+  <p class="kicker">Geology of the Colorado Plateau</p>
+  <h1>How Wood Becomes Stone</h1>
+  <p class="subtitle">The geochemistry of petrified wood formation in the desert Southwest</p>
+  <span class="ornament"></span>
+</header>
+
+<article>
+
+  <p>The petrified wood scattered across the Colorado Plateau and other desert Southwest landscapes represents one of geology's more elegant slow-motion transformations — a process called <strong>permineralization</strong> that can preserve cellular wood structure in exquisite detail while replacing organic material almost entirely with mineral silica.</p>
+
+  <h2>The Burial Setting</h2>
+
+  <p>The story begins roughly 225 million years ago during the Late Triassic, when the region that is now Arizona, Utah, and New Mexico was a humid, subtropical floodplain crossed by large river systems. Massive conifer trees — ancestors of modern araucarias — fell and were rapidly buried by river sediment and volcanic ash. Rapid burial is critical: it limits oxygen and slows microbial decay enough for mineralization to outpace decomposition.</p>
+
+  <h2>Silica-Rich Groundwater Does the Work</h2>
+
+  <p>The key geochemical agent is <strong>silica-saturated groundwater</strong>. Volcanic ash, abundant in Triassic sediments of the region, weathers readily and releases large quantities of dissolved silica (SiO₂) into percolating groundwater. As this silica-rich fluid moves through buried wood, it enters the porous cell walls and void spaces through diffusion and capillary action.</p>
+
+  <p>Permineralization proceeds in two overlapping ways:</p>
+
+  <ul class="process-list">
+    <li><strong>Pore-filling:</strong> Silica precipitates within the open lumens (interior cavities) of dead cells, essentially filling hollow spaces with mineral material.</li>
+    <li><strong>Replacement:</strong> Over longer timescales, the original organic cellulose and lignin molecules are gradually dissolved and replaced by silica on a molecule-by-molecule basis — a process sometimes called <em>silicification</em>. When this proceeds carefully enough, even individual cell walls, growth rings, and ray cells are preserved in mineral form.</li>
+  </ul>
+
+  <p>The silica typically precipitates first as <strong>opal</strong> (amorphous SiO₂), then slowly converts to <strong>chalcedony</strong> (microcrystalline quartz) and finally <strong>quartz</strong> as the material ages and recrystallizes. This explains why cross-sections of petrified logs often show a range of textures — from waxy translucent chalcedony to coarse crystalline quartz.</p>
+
+  <h2>The Colors</h2>
+
+  <p>The vivid reds, yellows, purples, and blacks that make Petrified Forest National Park so striking aren't from the silica itself — quartz is colorless. The colors come from <strong>trace metal impurities</strong> incorporated during mineralization:</p>
+
+  <div class="color-bar">
+    <span style="background:#b8460b;"></span>
+    <span style="background:#c98a2e;"></span>
+    <span style="background:#d4a843;"></span>
+    <span style="background:#e8c97a;"></span>
+    <span style="background:#6b4c7a;"></span>
+    <span style="background:#3d2e22;"></span>
+    <span style="background:#c8c4bc;"></span>
+  </div>
+  <div class="color-legend">
+    <span style="color:#b8460b;">Iron oxides → reds &amp; oranges</span>
+    <span style="color:#c98a2e;">Iron hydroxides → yellows</span>
+    <span style="color:#6b4c7a;">Manganese oxides → purples &amp; blacks</span>
+    <span style="color:#8c7355;">Pure silica → white or gray</span>
+  </div>
+
+  <p>Local variations in groundwater chemistry explain why a single log can display a dozen colors along its length.</p>
+
+  <h2>Exhumation</h2>
+
+  <p>The logs remained buried for over 200 million years. Erosion of the overlying Chinle Formation sediments during the past few million years has progressively exposed them at the surface. Because silicified wood is far harder and more resistant than the surrounding mudstone, logs literally erode out of hillsides and accumulate on the ground surface — sometimes in concentrations that look almost deliberate.</p>
+
+  <blockquote>
+    The net result is a 225-million-year chemical conversation between volcanic ash, groundwater, and fallen timber — preserved long enough for us to hold the outcome in our hands.
+  </blockquote>
+
+</article>
+
+<footer>
+  Geology &amp; Natural History · Colorado Plateau &mdash;
+  <a href="fun_stuff.html" style="color:var(--stone);">← Back to Fun Stuff</a>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

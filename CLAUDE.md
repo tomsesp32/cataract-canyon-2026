@@ -16,6 +16,8 @@ cataract-canyon-2026/
 ├── route.html          ← Google MyMaps embed of the float route
 ├── gallery.html        ← 6-card grid linking to per-family Google Photos albums
 ├── crew.html           ← The Guides: four-quadrant page (Tanner, Cam, Reina, Devon)
+├── fun_stuff.html      ← Fun Stuff landing page: card grid linking to sub-pages
+└── petrified_wood.html ← How petrified wood forms (geochemistry article)
 ├── css/
 │   └── style.css       ← Shared styles — all pages use this
 ├── js/
@@ -28,7 +30,7 @@ cataract-canyon-2026/
 ## Style conventions
 - All pages share `css/style.css` — never inline styles
 - Color scheme: canyon/river tones (deep rust, sandstone, river blue)
-- Navigation bar appears on every page linking to all five pages
+- Navigation bar appears on every page linking to all six top-level pages
 - Mobile-friendly layout
 
 ## Google Photos — one album per family
@@ -61,6 +63,13 @@ Pages should appear in the nav bar in this order:
 3. Route (`route.html`)
 4. Gallery (`gallery.html`)
 5. The Guides (`crew.html`)
+6. Fun Stuff (`fun_stuff.html`)
+
+## Fun Stuff section
+`fun_stuff.html` is a card-grid landing page. Each card links to a sub-page article.
+Sub-pages also carry the shared nav and link back to `fun_stuff.html` in their footer.
+Current sub-pages:
+- `petrified_wood.html` — petrified wood geochemistry article (has its own inline styles + Google Fonts; shared nav added on top)
 
 ## main.js purpose
 Handles shared nav behavior: mobile hamburger menu toggle. No other logic planned at this time.
